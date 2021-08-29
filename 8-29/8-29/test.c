@@ -165,18 +165,48 @@
 //	return 0;
 //}
 
+//#include <assert.h>
+//int my_strlen(const char* arr){
+//	int count = 0;
+//	assert(arr != NULL);//断言 保证指针有效信
+//	while (*arr++ != '\0')
+//	{
+//		count++;
+//	}
+//	return count;
+//}
+//int main(){
+//	char arr[] = "abcdef";
+//	printf("%d\n", my_strlen(arr));
+//	return 0;
+//}
+
+//int main(){
+//	char arr1[10] = "abcd";
+//	char arr2[10] = "efg";
+//	strcat(arr1, arr2);
+//	printf("%s\n", arr1);
+//	return 0;
+//}
+
+//手动实现 strcat()
 #include <assert.h>
-int my_strlen(const char* arr){
-	int count = 0;
-	assert(arr != NULL);//断言 保证指针有效信
-	while (*arr++ != '\0')
+char my_strcat(char* arr1, const char* arr2,int sz_arr1){
+	assert(arr1 != NULL);
+	assert(arr2 !=NULL);//保证指针有效
+	char* ret = arr1;
+	while (*(arr1 + sz_arr1++) = *arr2++)
 	{
-		count++;
+		;
 	}
-	return count;
+	return ret;
 }
 int main(){
-	char arr[] = "abcdef";
-	printf("%d\n", my_strlen(arr));
+	char arr1[10] = "abcd";
+	char arr2[10] = "efg";
+	int sz_arr1=strlen(arr1);
+	//int sz_arr2 = strlen(arr2);
+	//printf("%s\n", strcat(arr1, arr2, sz_arr2));
+	printf("%s\n", my_strcat(arr1, arr2, sz_arr1));
 	return 0;
 }
