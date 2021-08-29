@@ -108,19 +108,75 @@
 //}
 
 //my_strcpy 
-void my_strcpy(char* dest, char* src){
-	while (*src != '\0')
+//void my_strcpy(char* dest, char* src){
+//	while (*src != '\0')
+//	{
+//		*dest = *src;
+//		dest++;
+//		src++;
+//	}
+//	*dest = *src;
+//}
+//void my_strcpy(char* dest, char* src){
+//	while (*src != '\0')
+//	{
+//		*dest++ = *src++;
+//	}
+//	*dest = *src;
+//}
+//void my_strcpy(char* dest, char* src){
+//	if (dest != NULL && src != NULL){
+//		while (*dest++ = *src++)
+//		{
+//			;
+//		}
+//	}
+//	
+//}
+
+//#include <assert.h>
+//char* my_strcpy(char* dest,const char* src){
+//	char* ret = dest;
+//	assert(dest != NULL);//断言
+//	assert(src != NULL);//断言
+//	//把src指向的内容拷贝到dest指向的空间中去，包含'\0'字符。
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//	return ret;
+//}
+//int main(){
+//	char arr1[] = "#############";
+//	char arr2[] = "hello word!";
+//	printf("%s\n", my_strcpy(arr1, arr2));
+//	return 0;
+//}
+
+//int main(){
+//	const int num = 0;
+//	//num = 1;
+//	//const int* p = &num;
+//	//*p = 1;//err const放在*左边 修饰的是*p,也就是说不能改变*p(num)
+//	/*int* const p = &num;
+//	int n = 0;*/
+//	//p = &n;//err const放在*右边 修饰的是指针变量p本身 ，也就是说地址p不能被改变	
+//	printf("%d\n",num);
+//	return 0;
+//}
+
+#include <assert.h>
+int my_strlen(const char* arr){
+	int count = 0;
+	assert(arr != NULL);//断言 保证指针有效信
+	while (*arr++ != '\0')
 	{
-		*dest = *src;
-		dest++;
-		src++;
+		count++;
 	}
-	*dest = *src;
+	return count;
 }
 int main(){
-	char arr1[] = "#############";
-	char arr2[] = "hello word!";
-	my_strcpy(arr1, arr2);
-	printf("%s\n",arr1);
+	char arr[] = "abcdef";
+	printf("%d\n", my_strlen(arr));
 	return 0;
 }
