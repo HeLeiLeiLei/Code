@@ -29,11 +29,11 @@
 //7, [[1, 2, 8, 9], [2, 4, 9, 12], [4, 7, 10, 13], [6, 8, 11, 15]]
 //返回值：true
 //存在7，返回true
-#define bool int
-#define false 0
-#define true 1
-#define ROW 4
-#define CLU 4
+//#define bool int
+//#define false 0
+//#define true 1
+//#define ROW 4
+//#define CLU 4
 
 //bool Find_Num(int num,int arr[ROW][CLU],int row,int clu){
 //	int i = 0;
@@ -67,33 +67,60 @@
 // 2 4 9 12
 // 4 7 10 13
 // 6 8 11 15
-bool Find_Num(int num,int arr[ROW][CLU],int row,int clu){
-	int rows = 0;
-	int clus = clu - 1;
-	while (clus >= 0)
+//bool Find_Num(int num,int arr[ROW][CLU],int row,int clu){
+//	int rows = 0;
+//	int clus = clu - 1;
+//	while (clus >= 0)
+//	{
+//		int val = arr[rows][clus];
+//		if (num == val){
+//			return true;
+//		}
+//		if (num<val){
+//			clus--;
+//		}
+//		rows++;
+//	}
+//	return false;
+//}
+//int main(){
+//	int num = 0;
+//	int arr[ROW][CLU] = { { 1, 2, 8, 9 }, { 2, 4, 9, 12 }, { 4, 7, 10, 13 }, { 6, 8, 11, 15 } };
+//	printf("请输入一个数>:");
+//	scanf("%d",&num);
+//	int bl=Find_Num(num,arr, ROW, CLU);
+//	if (bl == 1){
+//		printf("%d存在\n",num);
+//	}
+//	else{
+//		printf("%d不存在\n", num);
+//	}
+//	return 0;
+//}
+
+//strcpy 字符拷贝
+//int main(){
+//	char arr1[] = "#############";
+//	char arr2[] = "hello word!";
+//	strcpy(arr1, arr2);
+//	printf("%s\n",arr1);
+//	return 0;
+//}
+
+//my_strcpy 
+void my_strcpy(char* dest, char* src){
+	while (*src != '\0')
 	{
-		int val = arr[rows][clus];
-		if (num == val){
-			return true;
-		}
-		if (num<val){
-			clus--;
-		}
-		rows++;
+		*dest = *src;
+		dest++;
+		src++;
 	}
-	return false;
+	*dest = *src;
 }
 int main(){
-	int num = 0;
-	int arr[ROW][CLU] = { { 1, 2, 8, 9 }, { 2, 4, 9, 12 }, { 4, 7, 10, 13 }, { 6, 8, 11, 15 } };
-	printf("请输入一个数>:");
-	scanf("%d",&num);
-	int bl=Find_Num(num,arr, ROW, CLU);
-	if (bl == 1){
-		printf("%d存在\n",num);
-	}
-	else{
-		printf("%d不存在\n", num);
-	}
+	char arr1[] = "#############";
+	char arr2[] = "hello word!";
+	my_strcpy(arr1, arr2);
+	printf("%s\n",arr1);
 	return 0;
 }
