@@ -64,6 +64,8 @@ struct MyStruct{
 //
 //}
 
+
+
 int cmp_int(const void* e1, const void* e2){
 	return *(int*)e1 - *(int*)e2;
 }
@@ -91,10 +93,34 @@ int cmp_struct_by_name(const void* e1,const void* e2){
 	return strcmp(((struct MyStruct*)e1)->name, ((struct MyStruct*)e2)->name);
 }
 
+void Swap(char* A,char* B,int width){
+	for (int i = 0; i < width;i++){
+		char temp = *A;
+		*A = *B;
+		*B = temp;
+		A++;
+		B++;
+	}
+}
+
+void Bubble_sort(void* base, int sz, int width,int (*cmp)(void* e1,void* e2)){
+	//趟数
+	for (int i = 0; i < sz - 1; i++){
+		//交换次数
+		for (int j = 0; j < sz - 1 - i;j++){
+			//两个元素比较
+			if (cmp( (char*)base + width*j, (char*)base + (j + 1)*width ) > 0 ){
+				Swap((char*)base + width*j, (char*)base + (j + 1)*width,width);
+			}
+		}
+	}
+}
+
 void test1(){
 	int arr[10] = { 9, 1, 2, 6, 7, 5, 3, 4, 8, 0 };
 	int sz = sizeof(arr) / sizeof(arr[0]);
-	qsort(arr, sz, sizeof(arr[0]), cmp_int);
+	Bubble_sort(arr, sz, sizeof(arr[0]), cmp_int);
+	//qsort(arr, sz, sizeof(arr[0]), cmp_int);
 	for (int i = 0; i < 10; i++){
 		printf("%d ", arr[i]);
 	}
@@ -104,7 +130,8 @@ void test2(){
 	//float数组
 	float fl[5] = { 5.0, 3.0, 4.0, 1.0, 2.0 };
 	int sz = sizeof(fl) / sizeof(fl[0]);
-	qsort(fl, sz, sizeof(fl[0]), cmp_float);
+	//qsort(fl, sz, sizeof(fl[0]), cmp_float);
+	Bubble_sort(fl,sz,sizeof(fl[0]),cmp_float);
 	for (int i = 0; i < 5; i++){
 		printf("%f ", fl[i]);
 	}
@@ -114,14 +141,21 @@ void test3(){
 	//结构体数组
 	struct MyStruct s[3] = { { "AA", 18 }, { "BB", 11 }, { "CC", 12 } };
 	int sz = sizeof(s) / sizeof(s[0]);
-	qsort(s,sz,sizeof(s[0]),cmp_struct_by_age);
+	//qsort(s,sz,sizeof(s[0]),cmp_struct_by_age);
+	Bubble_sort(s, sz, sizeof(s[0]),cmp_struct_by_age);
 	
 }
 
 void test4(){
 	struct MyStruct s[3] = { { "CC", 18 }, { "AA", 11 }, { "BB", 12 } };
 	int sz = sizeof(s) / sizeof(s[0]);
-	qsort(s, sz, sizeof(s[0]), cmp_struct_by_name);
+	//qsort(s, sz, sizeof(s[0]), cmp_struct_by_name);
+	Bubble_sort(s,sz,sizeof(s[0]),cmp_struct_by_name);
+	for (int i = 0; i < sz; i++){
+		printf("%s ", s[i].name);
+		printf("%d ",s[i].age);
+		printf("\n");
+	}
 }
 
 int main(){
