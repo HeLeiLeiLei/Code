@@ -129,58 +129,103 @@
 //	char* (*pfarr[4])(char*,const char*) = { my_strcopy};
 //}
 
-//函数指针数组是要案例
+//函数指针数组示范案例 -- 转移表
 //计算器
-void menu(){
-	printf("***************************\n");
-	printf("****  1、Add  2、Sub  *****\n");
-	printf("****  3、Mul  4、Div  *****\n");
-	printf("********* 0、exit *********\n");
-	printf("***************************\n");
-}
+//void menu(){
+//	printf("***************************\n");
+//	printf("****  1、Add  2、Sub  *****\n");
+//	printf("****  3、Mul  4、Div  *****\n");
+//	printf("********* 0、exit *********\n");
+//	printf("***************************\n");
+//}
+//
+//int Add(int x,int y){
+//	return x + y;
+//}
+//int Sub(int x, int y){
+//	return x - y;
+//}
+//int Mul(int x, int y){
+//	return x * y;
+//}
+//int Div(int x, int y){
+//	return x / y;
+//}
+//
+//void Colo(int (*pf)(int,int)){
+//	int x = 0;
+//	int y = 0;
+//	printf("请输入两个数:>");
+//	scanf("%d%d", &x, &y);
+//	printf("%d\n", pf(x, y));
+//}
+//
+//int main(){
+//	int input=0;
+//	int x = 0;
+//	int y = 0;
+//	do
+//	{
+//		menu();
+//		printf("请输入选择:>");
+//		scanf("%d",&input);
+//	
+//		switch (input)
+//		{
+//		case 1:
+//			Colo(Add);
+//			break;
+//		case 2:
+//			Colo(Sub);
+//			break;
+//		case 3:
+//			Colo(Mul);
+//			break;
+//		case 4:
+//			Colo(Div);
+//			break;
+//		case 0:
+//			printf("退出\n");
+//			break;
+//		default:
+//			printf("选择错误\n");
+//			break;
+//		}
+//	} while (input);
+//
+//	return 0;
+//}
 
-int Add(int x,int y){
-	return x + y;
-}
-int Sub(int x, int y){
-	return x - y;
-}
-int Mul(int x, int y){
-	return x * y;
-}
-int Div(int x, int y){
-	return x / y;
-}
-int main(){
-	int input = 0;
-	int x = 0;
-	int y = 0;
-	do
-	{
-		menu();
-		printf("请输入选择:>");
-		scanf("%d", &input);
-		int(*pfarr[])(int, int) = {0, Add, Sub, Mul, Div };
-		int x = 0;
-		int y = 0;
-		if (input>=1 && input<=4){
-			printf("请输入两个操作数:>");
-			scanf("%d%d", &x, &y);
-			int ret = pfarr[input](x, y);
-			printf("%d \n", ret);
-		}
-		else if(input == 0){
-			printf("退出\n");
-			break;
-		}
-		else{
-			printf("输入错误\n");
-		}
-		
-	} while (input);
-
-	return 0;
-}
+//int main(){
+//	int input = 0;
+//	int x = 0;
+//	int y = 0;
+//	do
+//	{
+//		menu();
+//		printf("请输入选择:>");
+//		scanf("%d", &input);
+//		int(*pfarr[])(int, int) = {0, Add, Sub, Mul, Div };
+//		int x = 0;
+//		int y = 0;
+//		if (input>=1 && input<=4){
+//			printf("请输入两个操作数:>");
+//			scanf("%d%d", &x, &y);
+//			int ret = pfarr[input](x, y);
+//			printf("%d \n", ret);
+//		}
+//		else if(input == 0){
+//			printf("退出\n");
+//			break;
+//		}
+//		else{
+//			printf("输入错误\n");
+//		}
+//		
+//	} while (input);
+//
+//	return 0;
+//}
 //int main(){
 //	int input=0;
 //	int x = 0;
@@ -224,3 +269,61 @@ int main(){
 //
 //	return 0;
 //}
+
+int Add(int x,int y){
+	return x + y;
+}
+
+//int main(){
+//	
+//	int arr[4];
+//	int (*p)[4] = arr;//数组指针
+//
+//	int (*pf)(int, int) = Add;//函数指针   那么 函数指针数组的函数指针怎么写
+//	int(*pfarr[4])(int, int); //函数指针数组
+//	int(*(*ppfarr)[4])(int, int) = &pfarr;//函数指针数组的函数指针
+//	//ppfarr 是一个指针 指向一个数组(函数指针数组) 数组里有4个元素
+//	//每个元素都是函数指针int(* )(int,int)
+//	return 0;
+//}
+
+
+//回调函数
+//void Print(char* str){
+//	printf("%s\n",str);
+//}
+//
+//
+//void test(void (*p)(char*)){
+//	printf("test\n");
+//	p("hello world");
+//}
+//int main(){
+//
+//	test(Print);
+//	return 0;
+//}
+
+
+void BubbleSort(int arr[],int sz){
+	for (int i = 0; i < sz;i++){
+		for (int j = 0; j<sz-i-1;j++){
+			if (arr[j]>arr[j+1]){
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+}
+int main(){
+
+	//实现冒泡函数
+	int arr[] = {5,9,8,3,10,2,6,7,4,1};
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	BubbleSort(arr,sz);
+	for (int n = 0; n < sz; n++){
+		printf("%d ", arr[n]);
+	}
+	return 0;
+}
