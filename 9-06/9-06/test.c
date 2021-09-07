@@ -175,33 +175,33 @@
 
 
 //1 2 3 4 5 6 7 8 9 10
-void move(int arr[],int len){
-	int left = 0;
-	int right = len - 1;
+void move(int* parr,int len){
+	int* left = parr;
+	int* right = parr +len-1;
 	while (left<right)
 	{
 		//×ó±ßÕÒÅ¼Êý
-		while ((left < right) && (arr[left] % 2 == 1))
+		while ((left < right) && (*left % 2 == 1))
 		{
 			left++;
 		}
 		//ÓÒ±ßÕÒÆæÊý
-		while ((left < right) && (arr[right] % 2 == 0))
+		while ((left < right) && (*right % 2 == 0))
 		{
 			right--;
 		}
 
 		if (left < right){
-			int tmp = arr[left];
-			arr[left] = arr[right];
-			arr[right] = tmp;
+			int tmp = *left;
+			*left = *right;
+			*right = tmp;
 		}
 	}
 	
 }
 
 print(int arr[], int len){
-	for (int i = 0; i < len - 1;i++){
+	for (int i = 0; i < len;i++){
 		printf("%d ",arr[i]);
 	}
 	printf("\n");
